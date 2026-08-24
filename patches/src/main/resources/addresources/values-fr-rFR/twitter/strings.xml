@@ -140,6 +140,8 @@
     <string name="piko_pref_search_suggestion_desc">Masque la suggestion de recherche dans la section Explorer</string>
     <string name="piko_legacy_share_link">Liens de partage hérités</string>
     <string name="piko_block_redirecting_to_x_lite">Bloquer la redirection vers X Lite</string>
+    <string name="piko_pref_block_update_screen">Bloquer l\'écran de mise à jour</string>
+    <string name="piko_pref_block_update_screen_desc">Empêche l\'affichage de l\'écran de mise à jour \"Cette application est obsolète\" au lancement</string>
     <!-- Feature flags Settings -->
     <string name="piko_title_feature_flags">Drapeaux de fonctionnalités</string>
     <string name="piko_pref_feature_flags">Ajouter des feature flags</string>
