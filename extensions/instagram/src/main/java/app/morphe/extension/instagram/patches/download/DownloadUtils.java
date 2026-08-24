@@ -169,12 +169,17 @@ public class DownloadUtils {
     }
 
 
-    public static void downloadPost(Context context,  UserSession userSession, Object mediaObject, int position) {
+    public static void downloadPost(Context context, UserSession userSession, Object mediaObject, int position) {
         try {
             boolean ENABLE_DIRECT_DOWNLOAD = Pref.enableDirectDownload() && SettingsStatus.downloadMedia;
             position = position < 1 ? 0 : position;
             MediaData mediaInfo = new MediaData(mediaObject, userSession);
-            if (ENABLE_DIRECT_DOWNLOAD) {
+
+            boolean isCarousel = mediaInfo.getCarouselSize() > 1;
+
+            // Se for post simples e o download direto estiver ativo, baixa na hora.
+            // Se for carrossel (> 1 mídia), abre a caixa de diálogo com a opção "Baixar tudo".
+            if (ENABLE_DIRECT_DOWNLOAD && !isCarousel) {
                 downloadMedia(context, mediaInfo, position, MediaType.ANY);
             } else {
                 downloadDialogBox(context, mediaInfo, position);
@@ -185,6 +190,7 @@ public class DownloadUtils {
             Logger.printException(() -> "Error at downloadPost", e);
         }
     }
+
 
     // Position is set to -1 if we want to download all medias from the media info object.
     public static void downloadMedia(Context context, MediaData mediaInfo, int position, MediaType mediaType) throws Exception {
